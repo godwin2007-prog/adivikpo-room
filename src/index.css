@@ -1,0 +1,78 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styles de base communs à tout le site */
+@layer base {
+  body {
+    @apply bg-lin font-texte text-encre antialiased;
+  }
+  h1, h2, h3 {
+    @apply font-titre font-light text-foret;
+  }
+  :focus-visible {
+    @apply outline outline-2 outline-offset-2 outline-laiton;
+  }
+}
+
+/* Classes réutilisables : on les écrit une fois ici */
+@layer components {
+  .container-site {
+    @apply mx-auto w-full max-w-6xl px-5 md:px-8;
+  }
+  .btn-primary {
+    @apply inline-block rounded-full bg-foret px-7 py-3 text-sm font-medium text-lin transition hover:bg-laiton;
+  }
+  .btn-outline {
+    @apply inline-block rounded-full border border-lin/70 px-7 py-3 text-sm font-medium text-lin transition hover:bg-lin hover:text-foret;
+  }
+  .field-label {
+    @apply mb-1.5 block text-sm font-medium text-encre;
+  }
+  .field-input {
+    @apply w-full rounded-md border border-pierre/30 bg-white px-4 py-3 text-sm focus:border-lagune focus:outline-none;
+  }
+  .field-error {
+    @apply mt-1 text-xs text-red-700;
+  }
+}
+
+/* Couleur des flèches et points des carrousels Swiper */
+.swiper {
+  --swiper-theme-color: rgb(var(--c-lin));
+  --swiper-navigation-size: 22px;
+}
+.gallery .swiper-pagination-bullet-active {
+  background: rgb(var(--c-laiton));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  * {
+    transition: none !important;
+    animation: none !important;
+  }
+}
+
+/* Champ sans bordure de la barre de recherche */
+@layer components {
+  .search-input {
+    @apply mt-1 w-full bg-transparent text-sm text-encre focus:outline-none;
+  }
+}
+
+/* Petits libellés au-dessus des titres de section */
+.eyebrow {
+  @apply text-xs font-semibold uppercase tracking-[0.2em] text-laiton;
+}
+
+@layer components {
+  .filter-select {
+    @apply rounded-full border border-pierre/30 bg-white px-4 py-2 text-sm focus:border-lagune focus:outline-none;
+  }
+}
+
+@layer components {
+  .step-title {
+    @apply mb-6 font-titre text-3xl font-light text-foret;
+  }
+}

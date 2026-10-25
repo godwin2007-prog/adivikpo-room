@@ -1,0 +1,100 @@
+/* ============================================================
+   Couleurs des 4 saisons.
+   SeasonContext écrit <html data-season="...">, et le bloc
+   correspondant ci-dessous redéfinit les variables.
+   Format "R G B" (sans virgules) pour que Tailwind gère l'opacité.
+   ============================================================ */
+
+:root,
+[data-season="printemps"] {
+  --c-foret: 46 74 54;      /* vert feuillage */
+  --c-lagune: 94 140 106;   /* vert tendre */
+  --c-laiton: 184 106 128;  /* rose fleur de glycine */
+  --c-lin: 245 244 238;
+  --c-encre: 28 33 29;
+  --c-pierre: 107 113 108;
+}
+
+[data-season="ete"] {
+  --c-foret: 15 76 92;      /* bleu océan */
+  --c-lagune: 46 139 160;   /* bleu piscine */
+  --c-laiton: 201 147 47;   /* jaune soleil */
+  --c-lin: 251 248 241;
+  --c-encre: 23 34 37;
+  --c-pierre: 102 112 111;
+}
+
+[data-season="automne"] {
+  --c-foret: 74 46 31;      /* brun écorce */
+  --c-lagune: 138 90 60;    /* noisette */
+  --c-laiton: 181 88 42;    /* feuille rousse */
+  --c-lin: 246 241 234;
+  --c-encre: 35 26 21;
+  --c-pierre: 119 105 95;
+}
+
+[data-season="hiver"] {
+  --c-foret: 31 42 58;      /* bleu nuit */
+  --c-lagune: 90 120 148;   /* bleu givre */
+  --c-laiton: 95 127 160;   /* bleu acier */
+  --c-lin: 242 244 247;
+  --c-encre: 22 27 34;
+  --c-pierre: 106 113 123;
+}
+
+/* Changement de saison en douceur plutôt qu'instantané */
+body,
+header,
+footer,
+.btn-primary {
+  transition: background-color 0.6s ease, color 0.6s ease;
+}
+
+/* ============================================================
+   Particules du hero : pétales, éclats de soleil, feuilles, neige.
+   Chaque particule descend (ou monte en été) en tournant.
+   ============================================================ */
+
+.particle {
+  position: absolute;
+  top: -5%;
+  pointer-events: none;
+  animation-name: fall;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+@keyframes fall {
+  from { transform: translate(0, 0) rotate(0deg); }
+  to   { transform: translate(60px, 110vh) rotate(360deg); }
+}
+
+@keyframes rise {
+  from { transform: translateY(0) scale(1); opacity: 0; }
+  30%  { opacity: 0.9; }
+  to   { transform: translateY(-90vh) scale(0.4); opacity: 0; }
+}
+
+.particle-printemps { width: 10px; height: 7px; border-radius: 60% 0; background: #f2c6d2; }
+.particle-automne   { width: 12px; height: 9px; border-radius: 0 70%; background: #d1803f; }
+.particle-hiver     { width: 6px;  height: 6px; border-radius: 50%;   background: #ffffff; opacity: 0.85; }
+.particle-ete {
+  top: auto;
+  bottom: -5%;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #ffe4a1;
+  box-shadow: 0 0 8px 2px rgba(255, 220, 140, 0.6);
+  animation-name: rise;
+}
+
+/* Visiteurs qui désactivent les animations : pas de particules */
+@media (prefers-reduced-motion: reduce) {
+  .particle { display: none; }
+}
+
+/* Points du carrousel d'accueil remontés au-dessus de la barre de recherche */
+.hero-swiper {
+  --swiper-pagination-bottom: 84px;
+}
